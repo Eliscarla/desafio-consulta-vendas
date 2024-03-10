@@ -29,8 +29,8 @@ public class SaleController {
 
 	@GetMapping(value = "/report")
 	public ResponseEntity<Page<ReportProjectionDto>> getReport(@RequestParam(required = false, value = "name") String name,
-														       @RequestParam(required = false, value = "dateIni") String dateIni,
-															   @RequestParam(required = false, value = "dateEnd") String dateEnd,
+														       @RequestParam(required = false, value = "minDate") String dateIni,
+															   @RequestParam(required = false, value = "maxDate") String dateEnd,
 															   Pageable pageable) {
 
 		Page<ReportProjectionDto> report = service.getReport(dateIni, dateEnd, name, pageable);
@@ -38,8 +38,8 @@ public class SaleController {
 	}
 
 	@GetMapping(value = "/summary")
-	public ResponseEntity<List<SumaryProjectionDto>> getSumary(@RequestParam(required = false, value = "dateIni") String dateIni,
-															   @RequestParam(required = false, value = "dateEnd") String dateEnd ) {
+	public ResponseEntity<List<SumaryProjectionDto>> getSumary(@RequestParam(required = false, value = "minDate") String dateIni,
+															   @RequestParam(required = false, value = "maxDate") String dateEnd ) {
 		List<SumaryProjectionDto> list = service.getSumary(dateIni, dateEnd);
 		return  ResponseEntity.ok(list);
 
